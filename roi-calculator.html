@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRIS ROI Calculator - Narendra Ogety</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .results {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .result-value {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .insights {
+            grid-column: 1 / -1;
+        }
+
+        .insight-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .insight-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .insight-card h3 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .insight-card p {
+            opacity: 0.9;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-link a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 12px 30px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 25px;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .back-link a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💰 HRIS ROI Calculator</h1>
+            <p>Calculate the real impact of HRIS implementation on your organization</p>
+        </div>
+
+        <div class="calculator-grid">
+            <div class="card">
+                <h2>📊 Company Metrics</h2>
+                <div class="input-group">
+                    <label>Number of Employees</label>
+                    <input type="number" id="employees" value="500" oninput="calculate()">
+                </div>
+                <div class="input-group">
+                    <label>Average HR Team Size</label>
+                    <input type="number" id="hrTeam" value="5" oninput="calculate()">
+                </div>
+                <div class="input-group">
+                    <label>Average HR Salary ($)</label>
+                    <input type="number" id="hrSalary" value="50000" oninput="calculate()">
+                </div>
+                <div class="input-group">
+                    <label>Current Manual Process Hours/Week</label>
+                    <input type="number" id="manualHours" value="40" oninput="calculate()">
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>⚡ HRIS Impact</h2>
+                <div class="input-group">
+                    <label>Time Saved per Employee (%)</label>
+                    <input type="number" id="timeSaved" value="60" min="0" max="100" oninput="calculate()">
+                </div>
+                <div class="input-group">
+                    <label>Reduction in Errors (%)</label>
+                    <input type="number" id="errorReduction" value="80" min="0" max="100" oninput="calculate()">
+                </div>
+                <div class="input-group">
+                    <label>Employee Turnover Reduction (%)</label>
+                    <input type="number" id="turnoverReduction" value="15" min="0" max="100" oninput="calculate()">
+                </div>
+                <div class="input-group">
+                    <label>HRIS Annual Cost ($)</label>
+                    <input type="number" id="hrisCost" value="30000" oninput="calculate()">
+                </div>
+
+                <div class="results" id="results">
+                    <div class="result-item">
+                        <span>Annual Time Savings</span>
+                        <span class="result-value" id="timeSavings">0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Cost Savings from Efficiency</span>
+                        <span class="result-value" id="efficiencySavings">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Savings from Turnover Reduction</span>
+                        <span class="result-value" id="turnoverSavings">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Net Annual ROI</span>
+                        <span class="result-value" id="netROI">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>🎯 ROI Percentage</span>
+                        <span class="result-value" id="roiPercent">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card insights">
+                <h2>🎯 Key Insights</h2>
+                <div class="insight-cards" id="insightCards">
+                    <!-- Dynamically generated -->
+                </div>
+            </div>
+        </div>
+
+        <div class="back-link">
+            <a href="index.html">← Back to Portfolio</a>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            const employees = parseFloat(document.getElementById('employees').value) || 0;
+            const hrTeam = parseFloat(document.getElementById('hrTeam').value) || 0;
+            const hrSalary = parseFloat(document.getElementById('hrSalary').value) || 0;
+            const manualHours = parseFloat(document.getElementById('manualHours').value) || 0;
+            const timeSaved = parseFloat(document.getElementById('timeSaved').value) || 0;
+            const errorReduction = parseFloat(document.getElementById('errorReduction').value) || 0;
+            const turnoverReduction = parseFloat(document.getElementById('turnoverReduction').value) || 0;
+            const hrisCost = parseFloat(document.getElementById('hrisCost').value) || 0;
+
+            // Calculate annual time savings
+            const hoursSavedPerWeek = manualHours * (timeSaved / 100);
+            const hoursSavedPerYear = hoursSavedPerWeek * 52;
+            
+            // Calculate efficiency savings
+            const hourlyRate = hrSalary / 2080; // Annual hours
+            const efficiencySavings = hoursSavedPerYear * hourlyRate * hrTeam;
+
+            // Calculate turnover savings (average cost is 6-9 months salary)
+            const avgTurnoverCost = hrSalary * 0.75 * employees * 0.15; // Assuming 15% turnover
+            const turnoverSavings = avgTurnoverCost * (turnoverReduction / 100);
+
+            // Calculate net ROI
+            const totalSavings = efficiencySavings + turnoverSavings;
+            const netROI = totalSavings - hrisCost;
+            const roiPercent = hrisCost > 0 ? ((netROI / hrisCost) * 100).toFixed(1) : 0;
+
+            // Update results
+            document.getElementById('timeSavings').textContent = Math.round(hoursSavedPerYear) + ' hours';
+            document.getElementById('efficiencySavings').textContent = '$' + Math.round(efficiencySavings).toLocaleString();
+            document.getElementById('turnoverSavings').textContent = '$' + Math.round(turnoverSavings).toLocaleString();
+            document.getElementById('netROI').textContent = '$' + Math.round(netROI).toLocaleString();
+            document.getElementById('roiPercent').textContent = roiPercent + '%';
+
+            // Update insights
+            updateInsights(hoursSavedPerYear, netROI, roiPercent, employees);
+        }
+
+        function updateInsights(hoursSaved, netROI, roiPercent, employees) {
+            const paybackMonths = Math.max(1, Math.round(12 / (parseFloat(roiPercent) / 100 + 1)));
+            const hoursSavedPerEmployee = Math.round(hoursSaved / employees);
+            
+            const insights = [
+                { title: hoursSaved.toLocaleString(), subtitle: 'Hours Saved Annually' },
+                { title: paybackMonths, subtitle: 'Months to Payback' },
+                { title: hoursSavedPerEmployee, subtitle: 'Hours/Employee Saved' },
+                { title: roiPercent + '%', subtitle: 'Return on Investment' }
+            ];
+
+            const insightHTML = insights.map(insight => `
+                <div class="insight-card">
+                    <h3>${insight.title}</h3>
+                    <p>${insight.subtitle}</p>
+                </div>
+            `).join('');
+
+            document.getElementById('insightCards').innerHTML = insightHTML;
+        }
+
+        // Initial calculation
+        calculate();
+    </script>
+</body>
+</html>
