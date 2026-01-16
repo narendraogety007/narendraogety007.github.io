@@ -133,6 +133,17 @@
             <div class="score-item">
                 <div>High Score: <span id="highScore">0</span></div>
             </div>
+                        <div class="score-item">
+                <div>Speed: 
+                    <select id="speedSelect" onchange="changeSpeed()" style="background: rgba(255, 255, 255, 0.3); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 5px; padding: 5px 10px; color: white; font-size: 16px; cursor: pointer;">
+                        <option value="1">⚡ 1 - Slowest</option>
+                        <option value="2">⚡⚡ 2 - Slow</option>
+                        <option value="3" selected>⚡⚡⚡ 3 - Normal</option>
+                        <option value="4">⚡⚡⚡⚡ 4 - Fast</option>
+                        <option value="5">⚡⚡⚡⚡⚡ 5 - Fastest</option>
+                    </select>
+                </div>
+            </div>
         </div>
         <canvas id="gameCanvas" width="400" height="400"></canvas>
         <div class="controls">
@@ -173,7 +184,8 @@
         
         highScoreElement.textContent = highScore;
         
-        function drawGame() {
+        function draw
+                    let gameSpeed = 100; // Default speed (Normal)Game() {
             if (gamePaused) return;
             
             moveSnake();
@@ -309,11 +321,10 @@
         function startGame() {
             if (!gameRunning && (dx !== 0 || dy !== 0)) {
                 gameRunning = true;
-                gameLoop = setInterval(drawGame, 100);
-            }
+                gameLoop = setInterval(drawGame, gameSpeed);            }
         }
         
-        document.addEventListener('keydown', (e) => {
+        document.addEventListener('keydown', (gameSpeed=> {
             if (e.code === 'Space') {
                 e.preventDefault();
                 if (gameRunning) {
@@ -344,6 +355,28 @@
         clearCanvas();
         drawFood();
         drawSnake();
+
+                function changeSpeed() {
+            const speedSelect = document.getElementById('speedSelect');
+            const speed = parseInt(speedSelect.value);
+            
+            // Speed mapping: 1=slowest (200ms), 2=slow (150ms), 3=normal (100ms), 4=fast (70ms), 5=fastest (50ms)
+            const speedMap = {
+                1: 200,
+                2: 150,
+                3: 100,
+                4: 70,
+                5: 50
+            };
+            
+            gameSpeed = speedMap[speed];
+            
+            // Restart the game loop with new speed if game is running
+            if (gameRunning) {
+                clearInterval(gameLoop);
+                gameLoop = setInterval(drawGame, gameSpeed);
+            }
+        }
     </script>
 </body>
 </html>
