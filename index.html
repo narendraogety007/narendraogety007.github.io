@@ -12,176 +12,323 @@
         }
         
         body {
-            background: #f5ead6;
-            color: #3d2817;
-            font-family: 'Georgia', 'Times New Roman', serif;
-            line-height: 1.7;
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: 0 auto;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
         }
         
         .container {
-            background: #fdfbf7;
-            border: 3px double #8b6f47;
-            padding: 50px 60px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
         
-        h1 {
-            font-family: 'Georgia', serif;
-            font-size: 2.8em;
-            color: #2d5016;
-            text-align: center;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-            font-weight: 400;
-        }
-        
-        .tagline {
-            text-align: center;
-            font-style: italic;
-            color: #5a4a3a;
-            font-size: 1.1em;
-            margin-bottom: 35px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #c9b896;
-        }
-        
-        h2 {
-            font-family: 'Georgia', serif;
-            font-size: 1.5em;
-            color: #2d5016;
-            margin-top: 35px;
-            margin-bottom: 18px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #8b6f47;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-        
-        .section {
+        .header {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             margin-bottom: 30px;
         }
         
-        p {
+        .header-top {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .header-content {
+            flex: 1;
+        }
+        
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #000;
+        }
+        
+        .tagline {
+            font-size: 18px;
+            color: #666;
             margin-bottom: 15px;
-            text-align: justify;
-            font-size: 1em;
+        }
+        
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .badge {
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 500;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+        }
+        
+        .badge.active {
+            background: #e6f4ea;
+            border-color: #34a853;
+            color: #137333;
+        }
+        
+        .badge.primary {
+            background: #e8f0fe;
+            border-color: #1a73e8;
+            color: #1a73e8;
+        }
+        
+        .links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .link {
+            color: #1a73e8;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .link:hover {
+            text-decoration: underline;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        
+        .main-content, .sidebar {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #000;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section:last-child {
+            margin-bottom: 0;
+        }
+        
+        p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 15px;
         }
         
         ul {
             list-style: none;
-            padding-left: 0;
+            padding: 0;
         }
         
         li {
-            padding-left: 25px;
+            color: #555;
             margin-bottom: 12px;
+            padding-left: 20px;
             position: relative;
-            text-align: justify;
         }
         
         li:before {
-            content: "■";
+            content: '•';
             position: absolute;
             left: 0;
-            color: #8b6f47;
-            font-size: 0.7em;
+            color: #1a73e8;
+            font-weight: bold;
         }
         
-        .profile {
-            background: #f9f5ed;
-            padding: 20px;
-            border-left: 4px solid #8b6f47;
-            margin-bottom: 30px;
+        .info-item {
+            margin-bottom: 20px;
         }
         
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            .container {
-                border: none;
-                box-shadow: none;
-            }
+        .info-label {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .info-value {
+            font-size: 16px;
+            color: #000;
+            font-weight: 500;
+        }
+        
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #34a853;
         }
         
         @media (max-width: 768px) {
-            .container {
-                padding: 30px 25px;
+            .content-grid {
+                grid-template-columns: 1fr;
             }
+            
+            .header-top {
+                flex-direction: column;
+            }
+            
             h1 {
-                font-size: 2em;
+                font-size: 24px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>NARENDRA OGETY</h1>
-        <div class="tagline">
-            Precision-driven HRIS Analyst specializing in high-integrity data, seamless integrations, and audit-ready HR ecosystems.
+        <div class="header">
+            <div class="header-top">
+                <div class="logo">NO</div>
+                <div class="header-content">
+                    <h1>Narendra Ogety</h1>
+                    <p class="tagline">HRIS/HCM Analyst specializing in high-integrity data, seamless integrations, and audit-ready HR ecosystems.</p>
+                    <div class="badges">
+                        <span class="badge active">Available</span>
+                        <span class="badge primary">HRIS Systems</span>
+                        <span class="badge">ADP Workforce Now</span>
+                        <span class="badge">Workday</span>
+                        <span class="badge">Oracle HCM</span>
+                    </div>
+                    <div class="links">
+                        <a href="https://linkedin.com" class="link">LinkedIn</a>
+                        <a href="https://github.com/narendraogety007" class="link">GitHub</a>
+                        <a href="mailto:narendra@example.com" class="link">Email</a>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="section profile">
-            <h2>Professional Profile</h2>
-            <p>
-                Experienced in administering ADP Workforce Now, Workday, and Oracle HCM for organizations ranging from 500 to 5,000 employees across diverse geographies. Known for transforming manual HR processes into reliable, automated workflows that improve accuracy, speed, and compliance for HR and payroll operations.
-            </p>
-        </div>
+        <div class="content-grid">
+            <div class="main-content">
+                <div class="section">
+                    <h2>About</h2>
+                    <p>Experienced HRIS Analyst with a proven track record of administering enterprise HR systems including ADP Workforce Now, Workday, and Oracle HCM for organizations ranging from 500 to 5,000 employees across diverse geographies.</p>
+                    <p>Known for transforming manual HR processes into reliable, automated workflows that improve accuracy, speed, and compliance for HR and payroll operations.</p>
+                </div>
 
-        <div class="section">
-            <h2>Platforms &amp; Systems Mastered</h2>
-            <ul>
-                <li>ADP Workforce Now and Workday HCM administration for U.S. and international employee populations.</li>
-                <li>Oracle HCM Cloud, Paycom, SAP SuccessFactors, UKG Pro (UltiPro), and BambooHR for core HR, benefits, and timekeeping.</li>
-                <li>Integrations between HRIS, ATS platforms such as iCIMS, and payroll systems to support end-to-end employee lifecycle processes.</li>
-                <li>Analytics and reporting using Advanced Excel (VLOOKUP, INDEX-MATCH, Pivot Tables, Power Query), SQL, Workday Report Writer, Power BI, and Tableau.</li>
-            </ul>
-        </div>
+                <div class="section">
+                    <h2>Key Achievements</h2>
+                    <ul>
+                        <li>Executed 200+ quarterly data audits, consistently maintaining 98%+ accuracy for HR, payroll, and compliance reporting</li>
+                        <li>Identified and corrected more than 500 data anomalies across HRIS modules, ensuring error-free payroll cycles</li>
+                        <li>Designed automated ATS-to-HRIS integrations that reduced data entry time by 30% and eliminated manual errors</li>
+                        <li>Streamlined onboarding workflows, reducing onboarding time by 20% and removing 95% of manual entry issues</li>
+                        <li>Cut ticket resolution time from 48 to 24 hours through improved documentation and training</li>
+                        <li>Increased HRIS adoption by 45% through comprehensive training for 100+ employees and managers</li>
+                    </ul>
+                </div>
 
-        <div class="section">
-            <h2>Selected HRIS Engagements</h2>
-            <ul>
-                <li>Administered ADP Workforce Now and Workday for 500+ employees, sustaining 99.9% system uptime through proactive monitoring and rapid incident response.</li>
-                <li>Managed Workday and ADP for a 5,000+ employee population, including mass data uploads, configuration changes, and security updates during organizational restructures.</li>
-                <li>Led UAT for upgrades and new modules, documenting test cases, identifying defects, and coordinating vendor remediation to achieve zero production-issue deployments.</li>
-                <li>Provided Tier 2 HRIS support to 80+ HR staff monthly, resolving complex workflow and configuration issues while maintaining a 95% satisfaction rating.</li>
-            </ul>
-        </div>
+                <div class="section">
+                    <h2>Technical Expertise</h2>
+                    <ul>
+                        <li>HRIS Platforms: ADP Workforce Now, Workday HCM, Oracle HCM Cloud, SAP SuccessFactors, UKG Pro, Paycom, BambooHR</li>
+                        <li>ATS Systems: iCIMS, Greenhouse, Lever, integration with HRIS for seamless data flow</li>
+                        <li>Analytics & Reporting: Advanced Excel (VLOOKUP, INDEX-MATCH, Pivot Tables, Power Query), SQL, Workday Report Writer, Power BI, Tableau</li>
+                        <li>Integrations: API configurations, data mapping, ETL processes, middleware tools</li>
+                        <li>Compliance: GDPR, SOC 2, FMLA, EEOC, ADA, FLSA, I-9, E-Verify</li>
+                    </ul>
+                </div>
 
-        <div class="section">
-            <h2>Data, Audits &amp; Integrations</h2>
-            <ul>
-                <li>Executed 200+ quarterly data audits, consistently maintaining 98%+ accuracy for HR, payroll, and compliance reporting.</li>
-                <li>Identified and corrected more than 500 data anomalies across HRIS modules, ensuring error-free payroll cycles and audit-ready records.</li>
-                <li>Implemented quarterly audit protocols that improved data accuracy from 85% to over 98% across critical HR data elements.</li>
-                <li>Designed and maintained automated ATS-to-HRIS integrations that reduced HRIS data entry time by 30% and eliminated manual rekeying errors for new hires.</li>
-                <li>Streamlined ATS-to-HRIS onboarding workflows, reducing onboarding time by 20% and removing 95% of manual entry issues.</li>
-            </ul>
-        </div>
+                <div class="section">
+                    <h2>Experience Highlights</h2>
+                    <ul>
+                        <li>Administered ADP Workforce Now and Workday for 500+ employees, sustaining 99.9% system uptime</li>
+                        <li>Managed Workday and ADP for 5,000+ employee population during organizational restructures</li>
+                        <li>Led UAT for upgrades and new modules, achieving zero production-issue deployments</li>
+                        <li>Provided Tier 2 HRIS support to 80+ HR staff monthly with 95% satisfaction rating</li>
+                        <li>Developed 25+ custom HRIS reports and Excel dashboards, reducing report generation time by 40%</li>
+                        <li>Ensured GDPR and SOC 2 compliance with zero external audit findings</li>
+                    </ul>
+                </div>
+            </div>
 
-        <div class="section">
-            <h2>Reports &amp; Analytics</h2>
-            <ul>
-                <li>Developed and automated 25+ custom HRIS reports and Excel dashboards tracking headcount, turnover, time-to-fill, and compliance metrics, reducing report generation time by 40%.</li>
-                <li>Built 30+ standard and ad-hoc Workday and Excel reports for turnover, diversity, training completion, and time-to-fill, informing talent and workforce planning decisions.</li>
-                <li>Applied advanced Excel analytics, including pivot tables and lookup functions, to identify a 15% turnover concentration within specific departments, enabling targeted retention strategies.</li>
-                <li>Analyzed HRIS metrics on retention, turnover, and demographics to present actionable insights to senior leadership for strategic workforce planning.</li>
-            </ul>
-        </div>
+            <div class="sidebar">
+                <div class="section">
+                    <div class="info-item">
+                        <div class="info-label">Status</div>
+                        <div class="info-value">
+                            <span class="status">
+                                <span class="status-dot"></span>
+                                Open to opportunities
+                            </span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Location</div>
+                        <div class="info-value">Lebanon, Indiana, US</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Experience</div>
+                        <div class="info-value">5+ years</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Specialization</div>
+                        <div class="info-value">HRIS Administration & Analytics</div>
+                    </div>
+                </div>
 
-        <div class="section">
-            <h2>Compliance &amp; Governance</h2>
-            <ul>
-                <li>Ensured GDPR and SOC 2 compliance through disciplined access controls, data retention policies, and documentation that passed external audits with zero findings.</li>
-                <li>Managed role-based access for 150+ users, conducting quarterly security reviews and maintaining strict adherence to data privacy expectations.</li>
-                <li>Supported compliance with FMLA, EEOC, ADA, FLSA, I-9, and E-Verify requirements through accurate recordkeeping and HRIS configuration.</li>
-                <li>Created HRIS documentation and troubleshooting guides that cut ticket resolution time from 48 to 24 hours and reduced support tickets by 30%.</li>
-                <li>Delivered training to 100+ employees and managers on HRIS navigation and self-service, increasing adoption by 45% and strengthening end-user ownership of HR data.</li>
-            </ul>
+                <div class="section">
+                    <h2>Core Skills</h2>
+                    <ul>
+                        <li>HRIS Administration</li>
+                        <li>Data Integrity & Audits</li>
+                        <li>System Integrations</li>
+                        <li>HR Analytics</li>
+                        <li>UAT Testing</li>
+                        <li>Process Automation</li>
+                        <li>Compliance Management</li>
+                        <li>User Training</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>Certifications</h2>
+                    <ul>
+                        <li>Workday HCM Certified</li>
+                        <li>ADP Workforce Now</li>
+                        <li>HR Analytics</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </body>
